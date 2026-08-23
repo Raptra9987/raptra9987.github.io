@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>database-manager - Merge Excel Files With Ease</title>
+    <meta name="description" content="Free desktop app to merge Excel, CSV, TXT, and vCard files into one database. Tracks source files, highlights duplicates, and adapts columns for contacts, products, students - in Uzbek, Russian, English. Download for Windows.">
+    <meta name="keywords" content="contacts,csv,data-cleaning,deduplication,desktop-app,excel,gui,openpyxl,tkinter,uzbek,vcard,windows,merge excel,combine csv,vcard merger,duplicate remover,excel database manager">
+    <meta name="author" content="Raptra9987">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="database-manager - Merge Excel Files With Ease">
+    <meta property="og:description" content="Merge many Excel/CSV/TXT/vCard files into one Excel database. Tracks source files, highlights duplicates, adapts columns for contacts, products, students. UI in Uzbek, Russian, English.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/Raptra9987/database-manager">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=database-manager+App">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="database-manager - Merge Excel Files With Ease">
+    <meta name="twitter:description" content="Merge Excel, CSV, TXT, vCard files into one database. Tracks sources, highlights duplicates. Available in Uzbek, Russian, English.">
+    <meta name="twitter:image" content="https://via.placeholder.com/1200x630.png?text=database-manager+App">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #2d3748;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            padding: 2.5rem 3rem;
+        }
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: #2b6cb0;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #2b6cb0;
+            padding-left: 14px;
+        }
+        h3 {
+            font-size: 1.2rem;
+            color: #2d3748;
+            margin-top: 1.5rem;
+            margin-bottom: 0.6rem;
+        }
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+        .badge-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            padding: 1.1rem 2.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(221, 107, 32, 0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+            margin: 1.5rem 0;
+            display: block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .badge-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(221, 107, 32, 0.45);
+        }
+        .download-section {
+            background: #ebf8ff;
+            border: 1px solid #bee3f8;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            background: #f7fafc;
+            border-left: 3px solid #68d391;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        .feature-list li strong {
+            color: #276749;
+        }
+        .language-badge {
+            display: inline-block;
+            background: #e2e8f0;
+            border-radius: 20px;
+            padding: 0.3rem 1rem;
+            margin: 0.2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .steps {
+            counter-reset: step;
+            padding-left: 1.5rem;
+        }
+        .steps li {
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            font-size: 1.05rem;
+            position: relative;
+            counter-increment: step;
+        }
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: -1.8rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: #2b6cb0;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 0.8rem;
+            line-height: 1.5rem;
+            font-weight: bold;
+        }
+        .note {
+            background: #feebc8;
+            border-left: 4px solid #dd6b20;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+        }
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .use-card {
+            background: #f7fafc;
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        .faq {
+            margin-top: 2rem;
+        }
+        .faq-item {
+            margin-bottom: 1.2rem;
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 8px;
+            border-left: 4px solid #a0aec0;
+        }
+        .faq-item h4 {
+            color: #1a202c;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+        @media (max-width: 640px) {
+            .container {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .badge-btn {
+                width: 100%;
+                font-size: 1.1rem;
+            }
+        }
+        footer {
+            text-align: center;
+            margin-top: 2.5rem;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🗃️ database-manager - Merge Data Files Instantly</h1>
+
+    <p style="text-align:center; font-size:1.15rem; margin-bottom:2rem;">Stop struggling with scattered spreadsheets. This free desktop tool combines all your Excel, CSV, TXT, and vCard files into one organized database, remembers where each row came from, and finds duplicate entries for you.</p>
+
+    <a href="https://github.com/Raptra9987/database-manager" class="badge-btn">⬇️ Download Now</a>
+
+    <div>
+        <span class="language-badge">🇺🇿 Uzbek</span>
+        <span class="language-badge">🇷🇺 Russian</span>
+        <span class="language-badge">🇬🇧 English</span>
+    </div>
+
+    <h2>📋 What This App Does</h2>
+    <p><strong>database-manager</strong> is a simple desktop program for Windows. It lets you merge many files into one master Excel file. This is especially useful if you work with contact lists, product catalogs, or student records.</p>
+    <p>Think of it like a blender for your spreadsheets – you put in multiple files, and it creates one smooth, clean database. The magic is that the app adds a column to every row showing which file it originally came from. No more confusion about data sources!</p>
+
+    <h2>✨ Key Features</h2>
+    <ul class="feature-list">
+        <li><strong>🔄 Merge Many Formats:</strong> Combine Excel (.xlsx), CSV, plain TXT, and vCard (.vcf) files in one go.</li>
+        <li><strong>📍 Source Tracking:</strong> Every row gets an extra column (e.g., "Source File") so you always know where data came from.</li>
+        <li><strong>🔍 Adaptive Columns:</strong> The app automatically adjusts column headers based on your data. It works with contacts, products, students, or any custom schema you want.</li>
+        <li><strong>📊 Duplicate Highlighting:</strong> Quickly spot repeated entries. The app can highlight or flag duplicates for easy cleaning.</li>
+        <li><strong>🌍 3 Languages:</strong> Interface available in Uzbek, Russian, and English.</li>
+        <li><strong>💻 User-Friendly:</strong> No coding needed. A clean graphical interface guides you step by step.</li>
+    </ul>
+
+    <h2>🚀 Getting Started on Windows</h2>
+    <div class="download-section">
+        <h3 style="margin-top:0;">Step 1: Download the App</h3>
+        <p style="font-size:1.1rem; margin-bottom:1.5rem;">Visit this link to download the application.</p>
+        <a href="https://github.com/Raptra9987/database-manager" style="background:#3182ce; color:white; display:inline-block; padding:0.9rem 2.5rem; border-radius:8px; text-decoration:none; font-weight:600; margin-bottom:1rem;">⬇️ Go to Download Page</a>
+    </div>
+
+    <h3>Step 2: Run the Program</h3>
+    <p>After downloading, <strong>double-click the file</strong> just like any other Windows program. If you see a blue or yellow prompt saying "Windows protected your PC," click on <em>"More info"</em> and then <em>"Run anyway"</em>. This is normal for new apps from the internet.</p>
+    <p>The program window will open. You don't need to install anything else – it works standalone.</p>
+
+    <h3>Step 3: Load Your Files</h3>
+    <ol class="steps">
+        <li>Click the <strong>"Add Files"</strong> button (or drag and drop your files into the window).</li>
+        <li>Select one or many Excel/CSV/TXT/vCard files from your computer.</li>
+        <li>Choose the language for the interface: <strong>Uzbek, Russian, or English</strong> (top corner).</li>
+        <li>Click the big <strong>"Merge"</strong> button.</li>
+    </ol>
+
+    <h3>Step 4: Save Your New Database</h3>
+    <p>The app asks where to save the merged Excel (.xlsx) file. Pick a location and name it something like "All_Contacts_2025.xlsx". That's it!</p>
+
+    <div class="note">
+        <p><strong>💡 Tip:</strong> Before merging, make sure all your CSV/TXT files have the same column order (e.g., Name, Phone, Email). The app will match headers automatically if possible, but consistent columns save you from later formatting chores.</p>
+    </div>
+
+    <h2>🧪 Example Use Cases</h2>
+    <div class="use-case-grid">
+        <div class="use-card">
+            <p style="font-size:2rem; margin-bottom:0.5rem;">👥</p>
+            <h4>Contacts</h4>
+            <p>Combine Outlook contacts, phone backups (vCard), and Excel address books into one clean list.</p>
+        </div>
+        <div class="use-card">
+            <p style="font-size:2rem; margin-bottom:0.5rem;">📦</p>
+            <h4>Products</h4>
+            <p>Merge product catalogs from suppliers into a single master spreadsheet for your store.</p>
+        </div>
+        <div class="use-card">
+            <p style="font-size:2rem; margin-bottom:0.5rem;">🎓</p>
+            <h4>Students</h4>
+            <p>Combine class rosters from different teachers into one university database.</p>
+        </div>
+        <div class="use-card">
+            <p style="font-size:2rem; margin-bottom:0.5rem;">🛠️</p>
+            <h4>Custom Schema</h4>
+            <p>Even if you have a very specific structure, the app respects your existing headers.</p>
+        </div>
+    </div>
+
+    <h2>❓ Frequently Asked Questions</h2>
+    <div class="faq">
+        <div class="faq-item">
+            <h4>Do I need to install Python or anything else?</h4>
+            <p>No. The file is a standalone Windows executable (.exe). It includes everything needed.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Will my data be uploaded to the internet?</h4>
+            <p>No. Everything runs on your computer. Your files never leave your machine.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Can I use empty columns?</h4>
+            <p>Yes. The app handles missing values gracefully lefting empty cells empty or you can fill them later in Excel.</p>
+        </div>
+        <div class="faq-item">
+            <h4>How does duplicate highlighting work?</h4>
+            <p>The app checks rows for duplicate values in the first column (or a key column you select). Duplicates get a distinct color and you can optionally delete duplicates with one click.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Which Excel version is compatible?</h4>
+            <p>The output file is .xlsx format, which works in Excel 2010 and newer, including Office 365, LibreOffice, and Google Sheets.</p>
+        </div>
+    </div>
+
+    <h2>🖥️ System Requirements</h2>
+    <p>Any modern Windows computer (Windows 8/10/11). At least 2 GB of RAM and about 50 MB of free disk space for the app itself. Works fine on older machines too.</p>
+
+    <h2>💬 Need Help?</h2>
+    <p>If you encounter any issues, feel free to <a href="https://github.com/Raptra9987/database-manager/issues" style="color:#2b6cb0;">open an issue on GitHub</a> or visit the repository's documentation. The project is actively maintained, and answers often come within a few days.</p>
+
+    <div style="text-align:center; margin-top:2.5rem; margin-bottom:1rem;">
+        <a href="https://github.com/Raptra9987/database-manager" class="badge-btn" style="background:linear-gradient(135deg, #38a169, #2f855a); box-shadow:0 6px 18px rgba(56,161,105,0.35);">⬇️ Download database-manager</a>
+    </div>
+
+    <footer>
+        <p>© 2025 database-manager · Free open-source tool · Built with ❤️</p>
+    </footer>
+</div>
+
+</body>
+</html>
