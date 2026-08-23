@@ -24,6 +24,8 @@ name = "About me"
 url = "/about-me/"
 weight = 40
 
+
+
 [params]
 defaultTheme = "auto"
 ShowReadingTime = false
@@ -31,7 +33,7 @@ ShowShareButtons = false
 ShowCodeCopyButtons = true
 
 [params.profileMode]
-enabled = true
+enabled = false
 title = "Yuyang Yao"
 subtitle = """
 Cognitive Science of Language | Computational Modelling | Language Models
