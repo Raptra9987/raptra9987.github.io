@@ -4,6 +4,26 @@ title = "Yuyang Yao"
 
 theme = "PaperMod"
 
+[[menu.main]]
+name = "Home"
+url = "/home/"
+weight = 10
+
+[[menu.main]]
+name = "Research"
+url = "/research/"
+weight = 20
+
+[[menu.main]]
+name = "Publications"
+url = "/publications/"
+weight = 30
+
+[[menu.main]]
+name = "About me"
+url = "/about-me/"
+weight = 40
+
 [params]
 defaultTheme = "auto"
 ShowReadingTime = false
