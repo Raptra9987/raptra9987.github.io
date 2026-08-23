@@ -1,0 +1,26 @@
+baseURL = "http://yuyangyao.com/"
+languageCode = "en-us"
+title = "Yuyang Yao"
+
+theme = "PaperMod"
+
+[params]
+defaultTheme = "auto"
+ShowReadingTime = false
+ShowShareButtons = false
+ShowCodeCopyButtons = true
+
+[params.profileMode]
+enabled = true
+title = "Yuyang Yao"
+subtitle = """
+Cognitive Science of Language | Computational Modelling | Language Models
+"""
+
+[[params.profileMode.buttons]]
+name = "Research"
+url = "/research"
+
+[[params.profileMode.buttons]]
+name = "CV"
+url = "/cv.pdf"
